@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Arkanoid | Three.js</title>
+        <link rel="stylesheet" href="main.css">
+        <script src="vendors/three.js"></script>
+    </head>
+    <body>
+        <!-- Div which will hold the Output -->
+        <div id="WebGL-output">
+        </div>
+        <h2 id="score">Score: <span></span></h2>
+        <h3 id="lives">Lives: <span></span></h2>
+
+        <div id="final_results">
+            <h1 id="final_status"></h1>
+            <h1 id="final_score"></h1>
+        </div>
+
+        <script>
+            // For tutorial purposes, we'll set up a global object containing
+            // references to all objects.
+
+            var scene = new THREE.Scene();
+            scene.add(new THREE.AxisHelper(5));
+
+            var renderer = new THREE.WebGLRenderer();
+
+            renderer.setClearColor(new THREE.Color(0.0, 0.0, 0.0));
+            var height = Math.min(window.innerHeight, 800, window.innerWidth*5/4);
+            renderer.setSize(height, height);
+
+            // var camera = new THREE.OrthographicCamera(0.0, 80.0, 100.0, 0.0, -1.0, 1.0);
+            var camera = new THREE.PerspectiveCamera( 45, 1, 1, 100 );
+            camera.position.set(0, 0, 100);
+            camera.lookAt(new THREE.Vector3(0, 0, 0));
+            scene.add( camera );
+
+            // Base do cenario
+            var base = new THREE.Mesh(
+                new THREE.PlaneGeometry( 30, 30, 3, 3 ),
+                new THREE.MeshBasicMaterial( {wireframe:true, side: THREE.DoubleSide} )
+                );
+            scene.add( base );
+
+            // Walls
+            var walls = {};
+            walls.left = new THREE.Mesh(
+                new THREE.PlaneGeometry( 30, 100, 3, 10 ),
+                new THREE.MeshBasicMaterial( {wireframe:true, side: THREE.DoubleSide} )
+                );
+            walls.left.rotation.z = Math.PI/2;
+            walls.left.rotation.y = Math.PI/2;
+            walls.left.position.setX(-15);
+            walls.left.position.setZ(50);
+            walls.left.add(new THREE.AxisHelper(5));
+            scene.add(walls.left);
+
+            walls.right = new THREE.Mesh(
+                new THREE.PlaneGeometry( 30, 100, 3, 10 ),
+                new THREE.MeshBasicMaterial( {wireframe:true, side: THREE.DoubleSide} )
+                );
+            walls.right.rotation.z = -Math.PI/2;
+            walls.right.rotation.y = -Math.PI/2;
+            walls.right.position.setX(15);
+            walls.right.position.setZ(50);
+            walls.right.add(new THREE.AxisHelper(5));
+            scene.add(walls.right);
+
+            walls.top = new THREE.Mesh(
+                new THREE.PlaneGeometry( 30, 100, 3, 10 ),
+                new THREE.MeshBasicMaterial( {wireframe:true, side: THREE.DoubleSide} )
+                );
+            walls.top.rotation.x = Math.PI/2;
+            walls.top.position.setY(15);
+            walls.top.position.setZ(50);
+            walls.top.add(new THREE.AxisHelper(5));
+            scene.add(walls.top);
+
+            walls.bot = new THREE.Mesh(
+                new THREE.PlaneGeometry( 30, 100, 3, 10 ),
+                new THREE.MeshBasicMaterial( {wireframe:true, side: THREE.DoubleSide} )
+                );
+            walls.bot.rotation.x = -Math.PI/2;
+            walls.bot.position.setY(-15);
+            walls.bot.position.setZ(50);
+            walls.bot.add(new THREE.AxisHelper(5));
+            scene.add(walls.bot);
+
+            // var gridHelper = new THREE.GridHelper( 10, 5 , 0xffff00, 0xffff00);
+            // gridHelper.rotation
+            // scene.add( gridHelper );
+
+            // scene.add(plane);
+
+            document.getElementById("WebGL-output").appendChild(renderer.domElement);
+
+            window.ECS = {
+                Constants: {
+                    // BRICK_WIDTH: 80/14,
+                    // BRICK_MARGIN: 80/14/14,
+                    // BRICK_HEIGHT: 3
+                },
+                Components: {},
+                systems: {},
+                entities: [],
+                game: {},
+                score: 0
+            };
+        </script>
+        <script src="js/entity.js"></script>
+        <script src="js/systems/render.js"></script>
+        <script src="js/game.js"></script>
+    </body>
+</html>

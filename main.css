@@ -1,0 +1,44 @@
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+}
+
+#score,
+#lives {
+    color: white;
+    position: fixed;
+    left: 10px;
+    margin-top: 5px;
+}
+
+#score {
+    top: 0px;
+}
+
+#lives {
+    top: 25px;
+}
+
+#final_results {
+    position: fixed;
+    height: 150px;
+    left: 0;
+    color: white;
+
+    text-align: center;
+
+    display: none;
+}
+
+#final_score {
+    margin-top: 5px;
+    font-size: 50px;
+}
