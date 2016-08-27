@@ -31,5 +31,30 @@ ECS.systems.render = function ( entities ) {
     }
 
     renderer.clear();
-    renderer.render(scene, camera);
+    renderer.setViewport(0, 0, height, height);
+    renderer.setScissor(0, 0, height, height);
+    renderer.setScissorTest(true);
+
+    renderer.render(scene, p_camera);
+
+    renderer.setViewport(height, 0, height, height);
+    renderer.setScissor(height, 0, height, height);
+    renderer.setScissorTest(true);
+
+    renderer.render(scene, o_camera);
 };
+
+
+// view = views[ii];
+// camera = view.camera;
+
+// view.updateCamera( camera, scene, mouseX, mouseY );
+
+// var left   = Math.floor( windowWidth  * view.left );
+// var bottom = Math.floor( windowHeight * view.bottom );
+// var width  = Math.floor( windowWidth  * view.width );
+// var height = Math.floor( windowHeight * view.height );
+// renderer.setViewport( left, bottom, width, height );
+// renderer.setScissor( left, bottom, width, height );
+// renderer.setScissorTest( true );
+// renderer.setClearColor( view.background );
