@@ -24,9 +24,9 @@ ECS.systems.render = function ( entities ) {
             && curEntity.components.appearance.visible
             && curEntity.components.position ){
 
-            curEntity.components.appearance.mesh.position.copy( curEntity.components.position.vector );
+            curEntity.components.appearance.obj.position.copy( curEntity.components.position.vector );
         } else {
-            curEntity.components.appearance.mesh.position.set( -200, -200, -200 );
+            curEntity.components.appearance.obj.position.set( -200, -200, -200 );
         }
     }
 

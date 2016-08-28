@@ -16,6 +16,14 @@ ECS.Game = function() {
     var entities = {}; // object containing { id: entity  }
     var entity;
 
+    entity = new ECS.Assemblages.D2({
+                matrix: [[0,0,0,0,0],
+                         [0,0,0,0,0],
+                         [0,0,1,0,0],
+                         [0,0,1,0,0],
+                         [0,1,1,0,0]] });
+    entities[entity.id] = entity;
+
     // store reference to entities
     ECS.entities = entities;
 

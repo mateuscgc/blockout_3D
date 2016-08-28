@@ -40,8 +40,8 @@
             //     )
             // );
 
-            var o_camera = new THREE.OrthographicCamera(-50, 50, 50, -50, -1, 200);
-            o_camera.position.set(0, 50, 0);
+            var o_camera = new THREE.OrthographicCamera(-50, 50, 50, -50, -1, 500);
+            o_camera.position.set(0, 50, 50);
             // o_camera.add( new THREE.Mesh(
             //         new THREE.SphereGeometry(200, 32, 32),
             //         new THREE.MeshBasicMaterial({ color: 0xff0000 })
@@ -110,9 +110,19 @@
                 game: {},
                 score: 0
             };
+
+            window.Helpers = {};
         </script>
+        <script src="js/helpers.js"></script>
         <script src="js/entity.js"></script>
+
+        <script src="js/components/appearance.js"></script>
+        <script src="js/components/position.js"></script>
+
+        <script src="js/assemblages.js"></script>
+
         <script src="js/systems/render.js"></script>
+
         <script src="js/game.js"></script>
     </body>
 </html>
