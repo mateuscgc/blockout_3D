@@ -22,11 +22,13 @@ ECS.Assemblages = {
                                     {
                                         matrix: (p.matrix[0][0] instanceof Array) ? p.matrix[0] : p.matrix
                                     }));
+        entity.addComponent( new ECS.Components.Moviment());
 
-        // entity.addComponent( new ECS.Components.Collision(
-        //                             {
-        //                                 matrix: (p.matrix[0][0] instanceof Array) ? p.matrix[0] : p.matrix
-        //                             }));
+
+        entity.addComponent( new ECS.Components.Collision(
+                                    {
+                                        matrix: (p.matrix[0][0] instanceof Array) ? p.matrix[0] : p.matrix
+                                    }));
 
         return entity;
     }

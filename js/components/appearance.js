@@ -13,8 +13,6 @@ ECS.Components.Appearance = function( p ){
 
     var obj_center = Helpers.center(p.matrix);
 
-    console.log(obj_center);
-
     for(i = 0; i < p.matrix.length; i++) {
         for(j = 0; j < p.matrix[i].length; j++) {
             if(p.matrix[i][j]) {
@@ -30,8 +28,6 @@ ECS.Components.Appearance = function( p ){
                                 }));
 
                 mesh.position.subVectors(pos, obj_center);
-                console.log(pos);
-                console.log(mesh.position);
                 this.obj.add(mesh);
 
             }

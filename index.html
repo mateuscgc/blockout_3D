@@ -107,21 +107,29 @@
                 Components: {},
                 systems: {},
                 entities: [],
+                base: {},
                 game: {},
                 score: 0
             };
 
             window.Helpers = {};
         </script>
+        <script src="js/controls.js"></script>
         <script src="js/helpers.js"></script>
+        <script src="js/base.js"></script>
         <script src="js/entity.js"></script>
 
         <script src="js/components/appearance.js"></script>
+        <script src="js/components/collision.js"></script>
+        <script src="js/components/moviment.js"></script>
         <script src="js/components/position.js"></script>
 
         <script src="js/assemblages.js"></script>
 
+        <script src="js/systems/collision.js"></script>
+        <script src="js/systems/moviment.js"></script>
         <script src="js/systems/render.js"></script>
+        <script src="js/systems/user_input.js"></script>
 
         <script src="js/game.js"></script>
     </body>

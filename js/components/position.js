@@ -13,11 +13,9 @@ ECS.Components.Position = function( p ){
 
     this.vector = new THREE.Vector3(
                         obj_center.x,
-                        5,
+                        75,
                         obj_center.z
                     );
-
-    console.log(this.vector);
 
     // this.vector = new THREE.Vector3(
     //                     (typeof p.x === 'undefined') ? 20 : p.x,

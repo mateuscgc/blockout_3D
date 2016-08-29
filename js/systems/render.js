@@ -43,18 +43,3 @@ ECS.systems.render = function ( entities ) {
 
     renderer.render(scene, o_camera);
 };
-
-
-// view = views[ii];
-// camera = view.camera;
-
-// view.updateCamera( camera, scene, mouseX, mouseY );
-
-// var left   = Math.floor( windowWidth  * view.left );
-// var bottom = Math.floor( windowHeight * view.bottom );
-// var width  = Math.floor( windowWidth  * view.width );
-// var height = Math.floor( windowHeight * view.height );
-// renderer.setViewport( left, bottom, width, height );
-// renderer.setScissor( left, bottom, width, height );
-// renderer.setScissorTest( true );
-// renderer.setClearColor( view.background );

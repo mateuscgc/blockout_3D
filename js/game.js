@@ -11,10 +11,48 @@ ECS.Game = function() {
     // loop.
     var self = this;
 
+    ECS.base = new ECS.Base();
+
     // Create some entities
     // ----------------------------------
     var entities = {}; // object containing { id: entity  }
     var entity;
+
+        // entity = new ECS.Assemblages.D2({
+    //             matrix: [[0,0,0,0,0],
+    //                      [0,0,0,0,0],
+    //                      [0,0,0,0,0],
+    //                      [1,1,0,0,0],
+    //                      [1,1,0,0,0]] });
+    // entity.components.position.vector.setY(25);
+    // entities[entity.id] = entity;
+
+    entity = new ECS.Assemblages.D2({
+                matrix: [[0,0,0,0,0],
+                         [0,0,0,0,0],
+                         [0,0,1,1,1],
+                         [0,0,0,0,0],
+                         [0,0,0,0,0]] });
+    entity.components.position.vector.setY(45);
+    entities[entity.id] = entity;
+
+    // entity = new ECS.Assemblages.D2({
+    //             matrix: [[0,0,0,1,1],
+    //                      [0,0,0,1,1],
+    //                      [0,0,0,1,1],
+    //                      [0,0,0,0,0],
+    //                      [0,0,0,0,0]] });
+    // entity.components.position.vector.setY(65);
+    // entities[entity.id] = entity;
+
+    // entity = new ECS.Assemblages.D2({
+    //             matrix: [[0,0,0,0,0],
+    //                      [1,1,1,1,1],
+    //                      [0,0,0,0,0],
+    //                      [0,0,0,0,0],
+    //                      [0,0,0,0,0]] });
+    // entity.components.position.vector.setY(95);
+    // entities[entity.id] = entity;
 
     entity = new ECS.Assemblages.D2({
                 matrix: [[0,0,0,0,0],
@@ -23,6 +61,9 @@ ECS.Game = function() {
                          [0,0,1,0,0],
                          [0,1,1,0,0]] });
     entities[entity.id] = entity;
+
+
+
 
     // store reference to entities
     ECS.entities = entities;
@@ -36,9 +77,9 @@ ECS.Game = function() {
     // Game loop
     // ----------------------------------
     function gameLoop (){
-        // ECS.systems.moviment(ECS.entities);
-        // ECS.systems.userInput(paddle);
-        // ECS.systems.collision(ball, ECS.entities, paddle.id);
+        ECS.systems.collision(ECS.entities);
+        ECS.systems.userInput(entity);
+        ECS.systems.moviment(ECS.entities);
         // ECS.systems.playerLosesLife( paddle, ball);
         // ECS.systems.life(ECS.entities, paddle);
         ECS.systems.render(ECS.entities);
