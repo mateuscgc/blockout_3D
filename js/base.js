@@ -44,6 +44,4 @@ ECS.Base.prototype.update = function( obj_matrix ) {
             }
         }
     }
-
-    console.log(this.matrix);
 };

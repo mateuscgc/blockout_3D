@@ -28,17 +28,21 @@ ECS.systems.userInput = function( obj ) {
         }
     }
 
-    if(!collides) {
+    for(r = 0; r < rt; r++)
+        tmp = Helpers.rotate(tmp);
+
+    if(!collides && !ECS.base.hit_ground(tmp, obj.components.position.vector.y)) {
         obj.components.collision.matrix = tmp;
 
-        var obj_center = Helpers.center(obj.components.collision.matrix);
+        obj.components.position.update(tmp);
 
-        obj.components.position.vector.setX(obj_center.x);
-        obj.components.position.vector.setZ(obj_center.z);
+        obj.components.appearance.update(tmp);
+
     }
 
     dx = 0;
     dz = 0;
+    rt = 0;
 
     return !collides;
 };

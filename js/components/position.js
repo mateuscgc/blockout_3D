@@ -25,3 +25,9 @@ ECS.Components.Position = function( p ){
     return this;
 };
 ECS.Components.Position.prototype.name = 'position';
+
+ECS.Components.Position.prototype.update = function(matrix) {
+    var obj_center = Helpers.center(matrix);
+    this.vector.setX(obj_center.x);
+    this.vector.setZ(obj_center.z);
+};

@@ -34,27 +34,6 @@ ECS.Components.Appearance = function( p ){
         }
     }
 
-
-    // this.obj.add( new THREE.Mesh(
-    //                     new Helpers.Cube( p.cube_side_size || 10),
-    //                     new THREE.MeshBasicMaterial(
-    //                             {
-    //                                 color: p.color || 0x885225,
-    //                                 wireframe: true,
-    //                                 side: THREE.DoubleSide
-    //                             })
-    //                 ));
-
-    // this.obj.add( new THREE.Mesh(
-    //                     new Helpers.Cube( p.cube_side_size || 10),
-    //                     new THREE.MeshBasicMaterial(
-    //                             {
-    //                                 color: p.color || 0xffffff,
-    //                                 wireframe: false,
-    //                                 side: THREE.DoubleSide
-    //                             })
-    //                 ));
-
     this.visible = (typeof p.visible === 'undefined') ? true : p.visible;
 
     scene.add(this.obj);
@@ -62,3 +41,18 @@ ECS.Components.Appearance = function( p ){
     return this;
 };
 ECS.Components.Appearance.prototype.name = 'appearance';
+
+ECS.Components.Appearance.prototype.update = function(matrix) {
+    var obj_center = Helpers.center(matrix);
+
+    var cube = -1;
+    for(i = 0; i < matrix.length; i++) {
+        for(j = 0; j < matrix[i].length; j++) {
+            if(matrix[i][j]) {
+                var pos = Helpers.position(j,i);
+
+                this.obj.children[++cube].position.subVectors(pos, obj_center);
+            }
+        }
+    }
+};

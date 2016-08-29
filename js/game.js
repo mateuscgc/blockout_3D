@@ -56,10 +56,10 @@ ECS.Game = function() {
 
     entity = new ECS.Assemblages.D2({
                 matrix: [[0,0,0,0,0],
-                         [0,0,0,0,0],
                          [0,0,1,0,0],
                          [0,0,1,0,0],
-                         [0,1,1,0,0]] });
+                         [0,1,1,1,1],
+                         [0,0,0,0,0]] });
     entities[entity.id] = entity;
 
 
