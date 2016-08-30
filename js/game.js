@@ -13,61 +13,20 @@ ECS.Game = function() {
 
     ECS.base = new ECS.Base();
 
-    // Create some entities
-    // ----------------------------------
-    var entities = {}; // object containing { id: entity  }
     var entity;
 
-        // entity = new ECS.Assemblages.D2({
-    //             matrix: [[0,0,0,0,0],
-    //                      [0,0,0,0,0],
-    //                      [0,0,0,0,0],
-    //                      [1,1,0,0,0],
-    //                      [1,1,0,0,0]] });
-    // entity.components.position.vector.setY(25);
-    // entities[entity.id] = entity;
-
-    entity = new ECS.Assemblages.D2({
-                matrix: [[0,0,0,0,0],
-                         [0,0,0,0,0],
-                         [0,0,1,1,1],
-                         [0,0,0,0,0],
-                         [0,0,0,0,0]] });
-    entity.components.position.vector.setY(45);
-    entities[entity.id] = entity;
-
-    // entity = new ECS.Assemblages.D2({
-    //             matrix: [[0,0,0,1,1],
-    //                      [0,0,0,1,1],
-    //                      [0,0,0,1,1],
-    //                      [0,0,0,0,0],
-    //                      [0,0,0,0,0]] });
-    // entity.components.position.vector.setY(65);
-    // entities[entity.id] = entity;
-
-    // entity = new ECS.Assemblages.D2({
-    //             matrix: [[0,0,0,0,0],
-    //                      [1,1,1,1,1],
-    //                      [0,0,0,0,0],
-    //                      [0,0,0,0,0],
-    //                      [0,0,0,0,0]] });
-    // entity.components.position.vector.setY(95);
-    // entities[entity.id] = entity;
-
-    entity = new ECS.Assemblages.D2({
+    function new_object() {
+        var entity = new ECS.Assemblages.D2({
                 matrix: [[0,0,0,0,0],
                          [0,0,1,0,0],
                          [0,0,1,0,0],
-                         [0,1,1,1,1],
+                         [0,1,1,0,0],
                          [0,0,0,0,0]] });
-    entities[entity.id] = entity;
+        ECS.entities[entity.id] = entity;
+        return entity;
+    }
 
-
-
-
-    // store reference to entities
-    ECS.entities = entities;
-
+    ECS.new_obj = true;
 
     // Setup systems
     // ----------------------------------
@@ -77,11 +36,14 @@ ECS.Game = function() {
     // Game loop
     // ----------------------------------
     function gameLoop (){
+        if(ECS.new_obj) {
+            entity = new_object();
+            ECS.new_obj = false;
+        }
+
         ECS.systems.collision(ECS.entities);
         ECS.systems.userInput(entity);
         ECS.systems.moviment(ECS.entities);
-        // ECS.systems.playerLosesLife( paddle, ball);
-        // ECS.systems.life(ECS.entities, paddle);
         ECS.systems.render(ECS.entities);
         // ECS.systems.renderGUI(paddle);
 

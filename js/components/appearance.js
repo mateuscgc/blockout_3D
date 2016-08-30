@@ -18,14 +18,30 @@ ECS.Components.Appearance = function( p ){
             if(p.matrix[i][j]) {
                 var pos = Helpers.position(j,i);
 
-                var mesh = new THREE.Mesh(
-                        new Helpers.Cube( p.cube_side_size || 10),
-                        new THREE.MeshBasicMaterial(
-                                {
-                                    color: p.color || 0x885225,
-                                    wireframe: true,
-                                    side: THREE.DoubleSide
-                                }));
+                var mesh = new THREE.Object3D();
+
+                mesh.add( new THREE.Mesh(
+                                new Helpers.Cube( p.cube_side_size || 10),
+                                new THREE.MeshBasicMaterial(
+                                        {
+                                            color: p.color || 0xffffff,
+                                            wireframe: true,
+                                            side: THREE.DoubleSide
+                                        })
+                            )
+                        );
+
+                mesh.add( new THREE.Mesh(
+                                new Helpers.Cube( p.cube_side_size || 10),
+                                new THREE.MeshBasicMaterial(
+                                        {
+                                            color: p.color || 0x885225,
+                                            wireframe: false,
+                                            side: THREE.DoubleSide
+                                        })
+                            )
+                        );
+
 
                 mesh.position.subVectors(pos, obj_center);
                 this.obj.add(mesh);

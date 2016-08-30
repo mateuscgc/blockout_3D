@@ -30,6 +30,8 @@ ECS.systems.collision = function ( entities ) {
             curEntity.components.moviment.moving = false;
             curEntity.components.collision.collides = false;
 
+            ECS.new_obj = true;
+
         }
     }
 };

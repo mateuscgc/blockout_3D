@@ -76,7 +76,6 @@ Helpers.position = function(x, z) {
 };
 
 Helpers.rotate = function(matrix) {
-    // console.log(matrix);
     var min_x = 5, max_x = -1, min_z = 5, max_z = -1;
     for(i = 0; i < matrix.length; i++) {
         for(j = 0; j < matrix[i].length; j++) {
@@ -90,9 +89,6 @@ Helpers.rotate = function(matrix) {
 
         }
     }
-
-    // console.log(min_z + " " + max_z);
-    // console.log(min_x + " " + max_x);
 
     var size = Math.max(max_x - min_x, max_z - min_z) + 1;
     var sizeX = size;
@@ -134,7 +130,6 @@ Helpers.rotate = function(matrix) {
     }
     var b_max_z = c_max_z;
 
-    // console.log(size);
     // Transpose matrix
     for(i = 0; i < size; i++) {
         for(j = i + 1; j < size; j++) {
@@ -153,8 +148,6 @@ Helpers.rotate = function(matrix) {
             matrix[l][b_max_x- j] = aux;
         }
     }
-
-    // console.log(matrix);
 
     return matrix;
 };
