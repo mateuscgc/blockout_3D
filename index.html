@@ -34,20 +34,9 @@
             var p_camera = new THREE.PerspectiveCamera( 90, 1, 1, 200 );
             p_camera.position.set(0, 100, 0);
             p_camera.lookAt(new THREE.Vector3(0, 0, 0));
-            // p_camera.add( new THREE.Mesh(
-            //         new THREE.SphereGeometry(50, 32, 32),
-            //         new THREE.MeshBasicMaterial({ color: 0xff0000 })
-            //     )
-            // );
 
             var o_camera = new THREE.OrthographicCamera(-50, 50, 50, -50, -1, 500);
             o_camera.position.set(0, 50, 50);
-            // o_camera.add( new THREE.Mesh(
-            //         new THREE.SphereGeometry(200, 32, 32),
-            //         new THREE.MeshBasicMaterial({ color: 0xff0000 })
-            //     )
-            // );
-
 
             // Base do cenario
             var base = new THREE.Mesh(
@@ -109,15 +98,18 @@
                 entities: [],
                 base: {},
                 game: {},
+                puzzles: [],
                 score: 0
             };
 
             window.Helpers = {};
         </script>
+        <script src="js/colors.js"></script>
         <script src="js/controls.js"></script>
         <script src="js/helpers.js"></script>
         <script src="js/base.js"></script>
         <script src="js/entity.js"></script>
+        <script src="js/pieces.js"></script>
 
         <script src="js/components/appearance.js"></script>
         <script src="js/components/collision.js"></script>

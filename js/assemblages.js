@@ -20,7 +20,8 @@ ECS.Assemblages = {
                                     }));
         entity.addComponent( new ECS.Components.Appearance(
                                     {
-                                        matrix: (p.matrix[0][0] instanceof Array) ? p.matrix[0] : p.matrix
+                                        matrix: (p.matrix[0][0] instanceof Array) ? p.matrix[0] : p.matrix,
+                                        color: p.color || 0x885225
                                     }));
         entity.addComponent( new ECS.Components.Moviment());
 

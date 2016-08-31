@@ -16,12 +16,14 @@ ECS.Game = function() {
     var entity;
 
     function new_object() {
+        var piece = ECS.pieces[Math.floor(Math.random()*ECS.pieces.length)];
+        var color = ECS.colors[Math.floor(Math.random()*ECS.colors.length)];
+        console.log(color);
+
         var entity = new ECS.Assemblages.D2({
-                matrix: [[0,0,0,0,0],
-                         [0,0,1,0,0],
-                         [0,0,1,0,0],
-                         [0,1,1,0,0],
-                         [0,0,0,0,0]] });
+                            matrix: piece,
+                            color: color
+                        });
         ECS.entities[entity.id] = entity;
         return entity;
     }
