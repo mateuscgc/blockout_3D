@@ -11,8 +11,6 @@ ECS.Components.Appearance = function( p ){
 
     this.obj = new THREE.Group(); // Same as THREE.Object3D()
 
-    console.log(p.color);
-
     var obj_center = Helpers.center(p.matrix);
 
     for(i = 0; i < p.matrix.length; i++) {

@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Arkanoid | Three.js</title>
+        <title>BlockOut 3D | Three.js</title>
         <link rel="stylesheet" href="main.css">
         <script src="vendors/three.js"></script>
     </head>
     <body>
         <!-- Div which will hold the Output -->
         <div id="WebGL-output">
-        <!-- </div>
+        </div>
         <h2 id="score">Score: <span></span></h2>
-        <h3 id="lives">Lives: <span></span></h2>
+        <!-- <h3 id="lives">Lives: <span></span></h2> -->
+
+        <h3>Arrow keys to move object // Space bar to rotate</h3>
 
         <div id="final_results">
             <h1 id="final_status"></h1>
             <h1 id="final_score"></h1>
-        </div> -->
+        </div>
 
         <script>
 
@@ -25,14 +27,13 @@
             var renderer = new THREE.WebGLRenderer();
 
             renderer.setClearColor(new THREE.Color(0.0, 0.0, 0.0));
-            var height = Math.min(window.innerHeight, 800, window.innerWidth*1/2);
+            var height = Math.min(window.innerHeight*9/10, 800, window.innerWidth*1/2);
             renderer.setSize(height*2, height);
 
             document.getElementById("WebGL-output").appendChild(renderer.domElement);
 
-
             var p_camera = new THREE.PerspectiveCamera( 90, 1, 1, 200 );
-            p_camera.position.set(0, 100, 0);
+            p_camera.position.set(0, 104, 0);
             p_camera.lookAt(new THREE.Vector3(0, 0, 0));
 
             var o_camera = new THREE.OrthographicCamera(-50, 50, 50, -50, -1, 500);
@@ -49,41 +50,41 @@
             // Walls
             var walls = {};
             walls.left = new THREE.Mesh(
-                new THREE.PlaneGeometry( 50, 100, 5, 10 ),
+                new THREE.PlaneGeometry( 50, 80, 5, 8 ),
                 new THREE.MeshBasicMaterial( {wireframe:true, side: THREE.DoubleSide} )
                 );
             walls.left.rotation.y = Math.PI/2;
             walls.left.position.setX(-25);
-            walls.left.position.setY(50);
+            walls.left.position.setY(40);
 
             walls.left.add(new THREE.AxisHelper(5));
             scene.add(walls.left);
 
             walls.right = new THREE.Mesh(
-                new THREE.PlaneGeometry( 50, 100, 5, 10 ),
+                new THREE.PlaneGeometry( 50, 80, 5, 8 ),
                 new THREE.MeshBasicMaterial( {wireframe:true, side: THREE.DoubleSide} )
                 );
             walls.right.rotation.y = Math.PI/2;
             walls.right.position.setX(25);
-            walls.right.position.setY(50);
+            walls.right.position.setY(40);
             walls.right.add(new THREE.AxisHelper(5));
             scene.add(walls.right);
 
             walls.top = new THREE.Mesh(
-                new THREE.PlaneGeometry( 50, 100, 5, 10 ),
+                new THREE.PlaneGeometry( 50, 80, 5, 8 ),
                 new THREE.MeshBasicMaterial( {wireframe:true, side: THREE.DoubleSide} )
                 );
             walls.top.position.setZ(-25);
-            walls.top.position.setY(50);
+            walls.top.position.setY(40);
             walls.top.add(new THREE.AxisHelper(5));
             scene.add(walls.top);
 
             walls.bot = new THREE.Mesh(
-                new THREE.PlaneGeometry( 50, 100, 5, 10 ),
+                new THREE.PlaneGeometry( 50, 80, 5, 8 ),
                 new THREE.MeshBasicMaterial( {wireframe:true, side: THREE.DoubleSide} )
                 );
             walls.bot.position.setZ(25);
-            walls.bot.position.setY(50);
+            walls.bot.position.setY(40);
             walls.bot.add(new THREE.AxisHelper(5));
             scene.add(walls.bot);
 
@@ -121,6 +122,8 @@
         <script src="js/systems/collision.js"></script>
         <script src="js/systems/moviment.js"></script>
         <script src="js/systems/render.js"></script>
+        <script src="js/systems/render_gui.js"></script>
+        <script src="js/systems/score.js"></script>
         <script src="js/systems/user_input.js"></script>
 
         <script src="js/game.js"></script>

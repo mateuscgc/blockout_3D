@@ -16,9 +16,8 @@ ECS.Game = function() {
     var entity;
 
     function new_object() {
-        var piece = ECS.pieces[Math.floor(Math.random()*ECS.pieces.length)];
+        var piece = ECS.pieces[Math.floor(Math.random()*((ECS.pieces.length-3)-0)+0)];
         var color = ECS.colors[Math.floor(Math.random()*ECS.colors.length)];
-        console.log(color);
 
         var entity = new ECS.Assemblages.D2({
                             matrix: piece,
@@ -43,11 +42,12 @@ ECS.Game = function() {
             ECS.new_obj = false;
         }
 
-        ECS.systems.collision(ECS.entities);
+        ECS.systems.collision(ECS.entities, entity);
+        ECS.systems.score(ECS.entities);
         ECS.systems.userInput(entity);
         ECS.systems.moviment(ECS.entities);
         ECS.systems.render(ECS.entities);
-        // ECS.systems.renderGUI(paddle);
+        ECS.systems.renderGUI();
 
         // continue the loop
         if(self._running !== false){
@@ -59,8 +59,16 @@ ECS.Game = function() {
 
     this._running = true;
 
-    this.endGame = function endGame( player, result ){
+    this.endGame = function endGame( result ){
         self._running = false;
+
+        resultsGUI = document.getElementById('final_results');
+        document.getElementById('final_status').innerHTML = ( result === 'victory' ) ? 'You Won!' : 'You Lost!';
+        document.getElementById('final_score').innerHTML = 'Final Score: ' + ECS.score;
+        resultsGUI.style.width = renderer.getSize().width + 'px';
+        resultsGUI.style.top = (renderer.getSize().height - 200) / 2 + 'px';
+        resultsGUI.style.background = ( result === 'victory' ) ? 'green' : 'red';
+        resultsGUI.style.display = 'block';
     };
 
     return this;

@@ -8,7 +8,7 @@
 
 // ECS - System - Collision
 // --------------------------------------
-ECS.systems.collision = function ( entities ) {
+ECS.systems.collision = function ( entities, curr ) {
     // Here, we've implemented systems as functions which take in an array of
     // entities. An optimization would be to have some layer which only
     // feeds in relevant entities to the system, but for demo purposes we'll
@@ -30,7 +30,10 @@ ECS.systems.collision = function ( entities ) {
             curEntity.components.moviment.moving = false;
             curEntity.components.collision.collides = false;
 
-            ECS.new_obj = true;
+
+            if(curEntity.components.position.vector.y >= 75)
+                ECS.game.endGame( 'defeat' );
+            if(curEntity == curr) ECS.new_obj = true;
 
         }
     }
